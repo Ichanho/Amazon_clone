@@ -1,0 +1,36 @@
+:root{
+  --amazon-color: #f0c14b;
+  --background-color: #f3f3f3;
+  --border-light-gray: #dddddd;
+}
+
+.basket{
+  display: flex;
+  padding: 20px;
+  background-color: white;
+  height: max-content;
+}
+
+.add {
+  background-color:rgba(164, 42, 42, 0.7);
+  height: 140px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 50px;
+  border: 1px solid var(--border-light-gray);
+  border-radius: 3px;
+}
+
+.title{
+  margin-right: 10px;
+  padding: 10px;
+  border-bottom: 1px solid var(--border-light-gray);
+}
+
+.left{
+  width: 70%;
+  margin-right: 10px;
+}
