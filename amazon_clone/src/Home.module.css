@@ -1,3 +1,9 @@
+:root{
+  --amazon-color: #f0c14b;
+  --background-color: #f3f3f3;
+  --border-light-gray: #dddddd;
+}
+
 .home{
   display: flex;
   justify-content: center;

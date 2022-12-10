@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import styles from "./Header.module.css"
 import SearchIcon from "@mui/icons-material/Search"
 import { ShoppingBasket } from "@mui/icons-material";
@@ -5,7 +6,9 @@ import { ShoppingBasket } from "@mui/icons-material";
 function Header() {
 
   return <div className={styles.header}>
-    <img className={styles.logo} src="https://pngimg.com/uploads/amazon/amazon_PNG11.png" />
+    <Link to="/">
+      <img className={styles.logo} src="https://pngimg.com/uploads/amazon/amazon_PNG11.png" />
+    </Link>
 
     <div className={styles.search}>
       <input className={styles.search_input} type="text"></input>
@@ -25,10 +28,12 @@ function Header() {
         <span className={styles.option_line_one}>반가워요</span>
         <span className={styles.option_line_two}>이찬호</span>
       </div>
-      <div className={styles.option_basket}>
-        <ShoppingBasket />
-        <span className={styles.count_item}>0</span>
-      </div>
+      <Link to="/basket">
+        <div className={styles.option_basket}>
+          <ShoppingBasket />
+          <span className={styles.count_item}>0</span>
+        </div>
+      </Link>
     </div>
   </div>;
 }
