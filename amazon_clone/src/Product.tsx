@@ -16,6 +16,10 @@ function Product({productInfo}: {productInfo :IproductProps}) {
   const a:any = [];
   a.length = rate;
 
+  function addToBasket(){
+    dispatchEvent()
+  }
+
   return <div className={styles.product}>
     <div className={styles.info}>
       <p className={styles.name}>{title}</p>
@@ -30,7 +34,7 @@ function Product({productInfo}: {productInfo :IproductProps}) {
     </div>
     <img src={img} className={styles.img} />
 
-    <button className={styles.btn}>장바구니에 담기</button>
+    <button className={styles.btn} onClick={addToBasket}>장바구니에 담기</button>
   </div>
 }
 
