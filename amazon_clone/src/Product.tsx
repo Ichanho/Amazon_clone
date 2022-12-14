@@ -1,14 +1,15 @@
 import styles from "./Product.module.css"
 import { useStateValue } from "./StateProvider";
+import { IproductProps } from "./Home";
 
 
-function Product(productInfo) {
-  const { id, title, img, price, rate } = productInfo.productInfo
+function Product({productInfo}:{productInfo:IproductProps}) {
+  const { id, title, img, price, rate } = productInfo;
 
   const [{basket},dispatch] = useStateValue();
 
   const a = [0];
-  a.length = Number(rate);
+  a.length = rate;
   a.fill(0);
 
   function addToBasket(){
@@ -34,7 +35,7 @@ function Product(productInfo) {
       </div>
       <div className={styles.rating}>
         {a.map((index)=>{
-           return <p key={Math.floor(100*Math.random(Date))}>*</p>})}
+           return <p key={Math.floor(100*Math.random())}>*</p>})}
       </div>
     </div>
     <img src={img} className={styles.img} />
