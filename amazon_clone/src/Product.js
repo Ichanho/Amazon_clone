@@ -22,7 +22,6 @@ function Product(productInfo) {
         rate: rate
       }
     })
-    console.log(basket);
   }
 
   return <div className={styles.product}>
@@ -34,7 +33,7 @@ function Product(productInfo) {
         <small>원</small>
       </div>
       <div className={styles.rating}>
-        {a.map((index)=>{console.log(index);
+        {a.map((index)=>{
            return <p key={Math.floor(100*Math.random(Date))}>*</p>})}
       </div>
     </div>
