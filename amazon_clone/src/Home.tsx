@@ -1,6 +1,13 @@
 import Product from "./Product";
 import styles from "./Home.module.css"
-import {IproductProps} from "./Product"
+
+interface IproductProps {
+  id: number,
+  title: string,
+  img: string,
+  price: number,
+  rate: number
+}
 
 function Home() {
 
@@ -18,15 +25,15 @@ function Home() {
       <img src="https://images.idgesg.net/images/article/2017/09/firetvad2-100736366-orig.jpg" alt="" className={styles.image} />
 
       <div className={styles.row}>
-        <Product productInfo={propsOfProduct}/>
-        <Product productInfo={propsOfProduct}/>
+        <Product productInfo={propsOfProduct} />
+        <Product productInfo={propsOfProduct} />
       </div>
       <div className={styles.row}>
-      <Product productInfo={propsOfProduct}/>
+        <Product productInfo={propsOfProduct} />
       </div>
       <div className={styles.row}>
-      <Product productInfo={propsOfProduct}/>
-      <Product productInfo={propsOfProduct}/>
+        <Product productInfo={propsOfProduct} />
+        <Product productInfo={propsOfProduct} />
       </div>
     </div>
   </div>

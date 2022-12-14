@@ -1,23 +1,28 @@
 import styles from "./Product.module.css"
+import { useStateValue } from "./StateProvider";
 
 
-export interface IproductProps {
-  id: number,
-  title: string,
-  img: string,
-  price: number,
-  rate: number
-}
+function Product(productInfo) {
+  const { id, title, img, price, rate } = productInfo.productInfo
 
+  const [{basket},dispatch] = useStateValue();
 
-function Product({productInfo}: {productInfo :IproductProps}) {
-  const { id, title, img, price, rate } = productInfo;
-
-  const a:any = [];
-  a.length = rate;
+  const a = [0];
+  a.length = Number(rate);
+  a.fill(0);
 
   function addToBasket(){
-    dispatchEvent()
+    dispatch({
+      type: 'ADD_TO_BASKET',
+      item: {
+        id: id,
+        title: title,
+        img: img,
+        price: price,
+        rate: rate
+      }
+    })
+    console.log(basket);
   }
 
   return <div className={styles.product}>
@@ -29,7 +34,8 @@ function Product({productInfo}: {productInfo :IproductProps}) {
         <small>원</small>
       </div>
       <div className={styles.rating}>
-        {a.map(()=><p>*</p>)}
+        {a.map((index)=>{console.log(index);
+           return <p key={Math.floor(100*Math.random(Date))}>*</p>})}
       </div>
     </div>
     <img src={img} className={styles.img} />
