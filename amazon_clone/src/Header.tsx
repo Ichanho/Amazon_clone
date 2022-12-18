@@ -3,9 +3,17 @@ import styles from "./Header.module.css"
 import SearchIcon from "@mui/icons-material/Search"
 import { ShoppingBasket } from "@mui/icons-material";
 import { useStateValue } from "./StateProvider";
+import {auth, signOut} from "./firebase"
 
 function Header() {
-  const[{basket},dispatch] = useStateValue();
+  const [{ basket, user }, dispatch] = useStateValue();
+
+  function handleAuthentication(){
+    if(user){
+      signOut(auth);
+    } else{
+    }
+  }
 
   return <div className={styles.header}>
     <Link to="/">
@@ -20,7 +28,9 @@ function Header() {
     <div className={styles.nav}>
       <div className={styles.option}>
         <span className={styles.option_line_one}>HI</span>
-        <span className={styles.option_line_two}>로그인</span>
+        <Link to={user ? "/" : "/login"}>
+          <span onClick={handleAuthentication} className={`${styles.option_line_two} ${styles.login}`}>{user ? "로그아웃" : "로그인"}</span>
+        </ Link>
       </div>
       <div className={styles.option}>
         <span className={styles.option_line_one}>돌아가기</span>

@@ -38,7 +38,7 @@
 .search_icon {
   background-color: var(--amazon-color);
   padding: 5px;
-  height: 15px;
+  height: 14px;
 }
 
 .nav {
@@ -73,4 +73,9 @@
 .count_item{
   margin-right: 10px;
   margin-left: 10px;
+}
+
+.login{
+  text-decoration: none;
+  color: white;
 }
