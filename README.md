@@ -18,3 +18,5 @@
 - TypeScript
 - Firebase
 - Material UI
+- Stripe (결제 API)
+- Axios

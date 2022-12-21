@@ -1,28 +1,67 @@
-import styles from "./Payment.module.css"
-import { useStateValue } from "./StateProvider";
-import { Link } from "react-router-dom"
-import { IproductProps } from "./Home";
-import BasketProduct from "./BasketProduct";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom"
 import CurrencyFormat from "react-currency-format";
-import { getBasketTotal } from "./Reducer";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { useState } from "react";
 import { StripeCardElementChangeEvent } from "@stripe/stripe-js";
+import axios from "axios";
+
+import { useStateValue } from "./StateProvider";
+import { getBasketTotal } from "./Reducer";
+
+import BasketProduct from "./BasketProduct";
+
+import styles from "./Payment.module.css"
+
+import { IproductProps } from "./Home";
 
 function Payment() {
   const [{ basket, user }, dispatch] = useStateValue();
   const [error, setError] = useState("");
   const [disabled, setDisabled] = useState(true);
-  const [processing, setProcessing] = useState("");
+  const [processing, setProcessing] = useState(false);
+  const [successed, setSuccessed] = useState(false);
 
+  const [clientSecret, setClientSecret] = useState("");
+
+  const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
 
-  function handleDetail(event:React.FormEvent){
+  useEffect(() => {
+    const getClientSecret = async () => {
+      const response = await axios({
+        method: "post",
+        url: `/payment/create?total=${getBasketTotal(basket) * 100}`
+      });
+      setClientSecret(response.data.clientSecret)
+
+      getClientSecret();
+    }
+  }, [basket]);
+
+
+  const handleDetail = async (event: React.FormEvent) => {
+    event.preventDefault();
+    setProcessing(true);
+
+    console.log(elements);
+
+    if (elements != null && elements.getElement(CardElement) != null) {
+      const payLoad = await stripe?.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement)
+        }
+      }).then(({ paymentIntent }) => {
+        setSuccessed(true);
+        setError("");
+        setProcessing(false);
+        navigate("/orders")
+      })
+    }
 
   }
 
-  function handleChange(event:StripeCardElementChangeEvent){
+  function handleChange(event: StripeCardElementChangeEvent) {
     setDisabled(event.empty);
     setError(event.error ? event.error.message : "");
   }
@@ -99,7 +138,7 @@ function Payment() {
                 prefix={"₩"}
               />
 
-              <button disabled={processing || disabled}><span>{processing ? <p>결제중입니다.</p> : <p>결제하기</p>}</span></button>
+              <button disabled={processing || disabled || successed}><span>{processing ? <p>결제중입니다.</p> : <p>결제하기</p>}</span></button>
 
             </div>
 
