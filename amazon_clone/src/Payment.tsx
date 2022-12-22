@@ -46,18 +46,18 @@ function Payment() {
 
     console.log(elements);
 
-    if (elements != null && elements.getElement(CardElement) != null) {
-      const payLoad = await stripe?.confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: elements.getElement(CardElement)
-        }
-      }).then(({ paymentIntent }) => {
-        setSuccessed(true);
-        setError("");
-        setProcessing(false);
-        navigate("/orders")
-      })
-    }
+    // if (elements != null && elements.getElement(CardElement) != null) {
+    //   const payLoad = await stripe?.confirmCardPayment(clientSecret, {
+    //     payment_method: {
+    //       card: elements.getElement(CardElement)
+    //     }
+    //   }).then(({ paymentIntent }) => {
+    //     setSuccessed(true);
+    //     setError("");
+    //     setProcessing(false);
+    //     navigate("/orders")
+    //   })
+    // }
 
   }
 

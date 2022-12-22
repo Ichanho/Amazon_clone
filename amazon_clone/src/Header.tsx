@@ -27,7 +27,7 @@ function Header() {
 
     <div className={styles.nav}>
       <div className={styles.option}>
-        <span className={styles.option_line_one}>HI</span>
+        <span className={styles.option_line_one}>{user ? `${user.email}` : `HI`}</span>
         <Link to={user ? "/" : "/login"}>
           <span onClick={handleAuthentication} className={`${styles.option_line_two} ${styles.login}`}>{user ? "로그아웃" : "로그인"}</span>
         </ Link>
@@ -37,8 +37,8 @@ function Header() {
         <span className={styles.option_line_two}>주문내역</span>
       </div>
       <div className={styles.option}>
-        <span className={styles.option_line_one}>반가워요</span>
-        <span className={styles.option_line_two}>이찬호</span>
+        <span className={styles.option_line_one}>쇼핑몰</span>
+        <span className={styles.option_line_two}>품목관리</span>
       </div>
       <Link to="/basket">
         <div className={styles.option_basket}>

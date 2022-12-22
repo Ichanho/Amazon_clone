@@ -13,7 +13,7 @@ const app = express();
 app.use(cors({origin : true}));
 app.use(express.json());
 
-app.get("/", (req, res:any)=>{return res.status(200).send("안녕")})
+app.get("/", (req:any, res:any)=>{return res.status(200).send("안녕")})
 
 exports.api = functions.https.onRequest(app);
 // const express = require("express");
